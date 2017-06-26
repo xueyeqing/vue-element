@@ -1,4 +1,6 @@
-# y
+[原文地址](https://github.com/PanJiaChen/vue-element-admin)
+
+> 技术栈主要的采用vue+element+axios由webpack2打包
 
 > A Vue.js project
 
