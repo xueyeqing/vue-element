@@ -2,6 +2,10 @@
 
 > 技术栈主要的采用vue+element+axios由webpack2打包
 
+> Validate 插件为表单提供了强大的验证功能，让客户端表单验证变得更简单
+
+> [Mock 测试框架](https://github.com/nuysoft/Mock/wiki)
+
 > A Vue.js project
 
 ## Build Setup

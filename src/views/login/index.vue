@@ -1,18 +1,20 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form class="login-form" :rules="loginRules" :model="loginForm" ref="loginForm">
       <h3 class="title">系统登录</h3>
       <el-form-item prop="email">
         <span class="svg-container"><wscn-icon-svg icon-class="jiedianyoujian"/></span>
-        <el-input name="email" type="text" placeholder="邮箱"></el-input>
+        <el-input name="email" type="text" placeholder="邮箱" v-model="loginForm.email" autoComplete="on"></el-input>
       </el-form-item>
 
       <el-form-item prop="password">
-        <el-input name="password" type="password" placeholder="密码"></el-input>
+        <span class="svg-container"><wscn-icon-svg icon-class="mima"/></span>
+        <el-input name="password" type="password" placeholder="密码" v-model="loginForm.password"
+                  autoComplete="on"></el-input>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" style="width:100%;">
+        <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin" :loading="loading">
           登录
         </el-button>
       </el-form-item>
@@ -22,7 +24,56 @@
 </template>
 
 <script>
-  export default{}
+  import {isWscnEmail} from 'utils/validate'
+
+  export default{
+    data() {
+      const validateEmail = (rule, value, callback) => {
+        if (!isWscnEmail(value)) {
+          callback(new Error('请输入合法的163邮箱'));
+        } else {
+          callback();
+        }
+      };
+      const validatePass = (rule, value, callback) => {
+        if (value.length < 6) {
+          callback(new Error('密码不能小于6位'));
+        } else {
+          callback();
+        }
+      };
+      return {
+        loginForm: {
+          email: 'zhangtaihu101@163.com',
+          password: ''
+        },
+        loginRules: {
+          email: [{required: true, trigger: 'blur', validator: validateEmail}],
+          password: [{required: true, trigger: 'blur', validator: validatePass}]
+        },
+        loading: false
+      }
+    },
+    methods: {
+      handleLogin() {
+        this.$refs.loginForm.validate(valid => {
+          if (valid) {
+            this.loading = true;
+            this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
+              this.$router.push({path: '/'})
+              this.loading = false;
+            }).catch(err => {
+              this.$message.error(err)
+              this.loading = false;
+            });
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      }
+    }
+  }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
@@ -32,6 +83,12 @@
     @include relative;
     height: 100vh;
     background-color: #2d3a4b;
+
+    /*google浏览器产生的问题修复*/
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #293444 inset !important;
+      -webkit-text-fill-color: #fff !important;
+    }
 
     input {
       background: transparent;
@@ -71,6 +128,11 @@
       color: #eeeeee;
       text-align: center;
       margin: 0px auto 40px auto;
+    }
+
+    .svg-container {
+      padding: 6px 5px 6px 15px;
+      color: #889aa4;
     }
   }
 </style>
