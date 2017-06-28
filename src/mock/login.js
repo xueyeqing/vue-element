@@ -1,6 +1,8 @@
 /**
  * Created by a1 on 17/6/27.
  */
+import {param2Obj} from 'utils'
+
 const userMap = {
   admin: {
     role: ['admin'],
@@ -29,11 +31,32 @@ const userMap = {
   }
 }
 
+/**
+ * 执行登录，回调产生config数据如下，根据config数据返回需要的信息
+ *  {
+ *    url: "https://api-dev/login/loginbyemail",
+ *    type: "POST",
+ *    body: "{"email":"admin@163.com","password":"aaaaaa"}"
+ *  }
+ */
 export default {
-  loginByEmail: config => {
-    console.log(config);
+  loginByEmail_mock: config => {
+    console.log('return Mock:', config);
     const {email} = JSON.parse(config.body);
     // console.log(userMap[email.split('@')[0]]);
     return userMap[email.split('@')[0]];
+  },
+  /**
+   * config==> url: "https://api-dev/user/info?token=admin", type: "GET", body: null
+   * @param config
+   * @returns {*} 用户信息
+   */
+  getInfo: config => {
+    const {token} = param2Obj(config.url);
+    if (userMap[token]) {
+      return userMap[token];
+    } else {
+      Promise.reject('a');
+    }
   }
 }

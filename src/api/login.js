@@ -14,3 +14,11 @@ export function loginByEmail(email, password) {
     data
   })
 }
+
+export function getInfo(token) {
+  return fetch({
+    url: '/user/info',
+    method: 'get',
+    params: {token}
+  })
+}

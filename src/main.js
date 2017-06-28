@@ -23,7 +23,11 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next({path: '/'})
     } else {
-      next()
+      // 获取用户信息
+      store.dispatch('GetInfo').then(res => {
+        const roles = res.data.role;
+        next();
+      });
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
