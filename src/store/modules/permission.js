@@ -15,11 +15,14 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes({commit}) {
+    GenerateRoutes({commit}, data) {
       // 异步操作
       return new Promise(resolve => {
-        // const roles = data;
-        const accessedRouters = asyncRouterMap;
+        const roles = data;
+        let accessedRouters;
+        if (roles.indexOf('admin') >= 0) {
+          accessedRouters = asyncRouterMap
+        }
         commit('SET_ROUTERS', accessedRouters);
         resolve();
       })

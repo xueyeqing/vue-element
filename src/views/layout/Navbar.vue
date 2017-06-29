@@ -1,11 +1,22 @@
 <template>
-  <div>navbar</div>
+  <el-menu class="navbar">
+    <levelbar></levelbar>
+  </el-menu>
 </template>
 
 <script>
-  export default{}
+  import Levelbar from './Levelbar';
+  export default{
+    components: {
+      Levelbar
+    }
+  }
 </script>
 
-<style scoped>
-
+<style rel="stylesheet/scss" lang="scss" scoped>
+  .navbar {
+    height: 50px;
+    line-height: 50px;
+    border-radius: 0px !important;
+  }
 </style>

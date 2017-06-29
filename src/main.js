@@ -25,9 +25,9 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         // 获取用户信息
-        store.dispatch('GetInfo').then(() => {
-          // const roles = res.data.role;
-          store.dispatch('GenerateRoutes').then(() => { // 生成可访问的路由表
+        store.dispatch('GetInfo').then(res => {
+          const roles = res.data.role;
+          store.dispatch('GenerateRoutes', roles).then(() => { // 生成可访问的路由表
             // 动态添加可访问路由表
             router.addRoutes(store.getters.addRouters);
             console.log(to.path);
