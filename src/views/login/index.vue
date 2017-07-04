@@ -44,8 +44,8 @@
       };
       return {
         loginForm: {
-          email: 'zhangtaihu101@163.com',
-          password: ''
+          email: 'admin@163.com',
+          password: '123456'
         },
         loginRules: {
           email: [{required: true, trigger: 'blur', validator: validateEmail}],

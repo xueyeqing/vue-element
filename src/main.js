@@ -15,6 +15,13 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
+// permissiom judge
+function hasPermission(roles, permissionRoles) {
+  if (roles.indexOf('admin') >= 0) return true; // admin权限 直接通过
+  if (!permissionRoles) return true;
+  return roles.some(role => permissionRoles.indexOf(role) >= 0)
+}
+
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   console.log('token:', store.getters.token)
@@ -30,12 +37,18 @@ router.beforeEach((to, from, next) => {
           store.dispatch('GenerateRoutes', roles).then(() => { // 生成可访问的路由表
             // 动态添加可访问路由表
             router.addRoutes(store.getters.addRouters);
-            console.log(to.path);
             next(to.path);
           })
+        }).catch(err => {
+          console.log(err)
         });
       } else {
-        next();
+        console.log(store.getters.roles, to.meta.role)
+        if (hasPermission(store.getters.roles, to.meta.role)) {
+          next();//
+        } else {
+          next({path: '/401', query: {noGoBack: true}});
+        }
       }
     }
   } else {
