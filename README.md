@@ -23,6 +23,7 @@ name 为属性名, rule 为规则, value 为值，属性名和生成规则之间
 
 ## vue.2.0新特性 addRoutes实现路由动态加载，菜单动态加载，运用于后台管理系统，路由数据取自数据库。
 
+## vue-countTo [详情见github地址](https://github.com/PanJiaChen/vue-countTo)
 
 
 > A Vue.js project

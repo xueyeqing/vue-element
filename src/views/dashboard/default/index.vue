@@ -1,9 +1,16 @@
 <template>
-  <div>default</div>
+  <div>{{name}}</div>
 </template>
 
 <script>
-  export default{}
+
+  import {mapGetters} from 'vuex';
+
+  export default{
+    computed: {
+      ...mapGetters(['name'])
+    }
+  }
 </script>
 
 <style scoped>
