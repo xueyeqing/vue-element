@@ -38,7 +38,7 @@
       <div class="chart-container">
         <MonthKpi style="border-bottom: 1px solid #DEE1E2;"
                   :articlesComplete='statisticsData.month_article_count'></MonthKpi>
-        <div>1234567</div>
+        <articlesChart :listData="statisticsData.week_article"></articlesChart>
       </div>
       <div class="recent-articles-container">
         <div class="recent-articles-title">最近撸了</div>
@@ -51,6 +51,7 @@
   import {mapGetters} from 'vuex';
   import countTo from 'vue-count-to';
   import MonthKpi from './monthKpi';
+  import articlesChart from './articlesChart'
   export default{
     data() {
       return {
@@ -59,14 +60,28 @@
           article_count: 1024,
           comment_count: 102400,
           pageviews_count: 1024,
-          month_article_count: 28
+          month_article_count: 28,
+          week_article: [
+            {count: 30, week: '201716'},
+            {count: 26, week: '201715'},
+            {count: 31, week: '201714'},
+            {count: 28, week: '201713'},
+            {count: 40, week: '201712'},
+            {count: 41, week: '201711'},
+            {count: 50, week: '201710'},
+            {count: 42, week: '201709'},
+            {count: 36, week: '201708'},
+            {count: 32, week: '201707'},
+            {count: 40, week: '201706'},
+            {count: 41, week: '201705'}
+          ]
         }
       }
     },
     computed: {
       ...mapGetters(['name'])
     },
-    components: {countTo, MonthKpi}
+    components: {countTo, MonthKpi, articlesChart}
   }
 </script>
 
