@@ -25,6 +25,8 @@ name 为属性名, rule 为规则, value 为值，属性名和生成规则之间
 
 ## vue-countTo [详情见github地址](https://github.com/PanJiaChen/vue-countTo)
 
+## ECharts
+ > ECharts 提供了常规的折线图，柱状图，散点图，饼图，K线图，用于统计的盒形图，用于地理数据可视化的地图，热力图，线图，用于关系数据可视化的关系图，treemap，多维数据可视化的平行坐标，还有用于 BI 的漏斗图，仪表盘，并且支持图与图之间的混搭。
 
 > A Vue.js project
 

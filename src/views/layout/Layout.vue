@@ -80,6 +80,7 @@
 
     .main-container {
       min-height: 100%;
+      min-width: 985px;
       transition: all .28s ease-out;
       margin-left: 180px;
     }

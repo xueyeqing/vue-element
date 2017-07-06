@@ -33,13 +33,24 @@
       <router-link class="pan-btn green-btn" to="/example/table/table">Table</router-link>
       <router-link class="pan-btn tiffany-btn" to="/example/form/edit">Form</router-link>
     </div>
-    <div class="main-dashboard-container">main</div>
+
+    <div class="clearfix main-dashboard-container">
+      <div class="chart-container">
+        <MonthKpi style="border-bottom: 1px solid #DEE1E2;"
+                  :articlesComplete='statisticsData.month_article_count'></MonthKpi>
+        <div>1234567</div>
+      </div>
+      <div class="recent-articles-container">
+        <div class="recent-articles-title">最近撸了</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import {mapGetters} from 'vuex';
   import countTo from 'vue-count-to';
+  import MonthKpi from './monthKpi';
   export default{
     data() {
       return {
@@ -47,22 +58,19 @@
         statisticsData: {
           article_count: 1024,
           comment_count: 102400,
-          pageviews_count: 1024
+          pageviews_count: 1024,
+          month_article_count: 28
         }
       }
     },
     computed: {
       ...mapGetters(['name'])
     },
-    components: {countTo}
+    components: {countTo, MonthKpi}
   }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-
-  .btn-group {
-    margin: 30px 36px 30px 0;
-  }
 
   .dashboard-editor-container {
     padding: 30px 50px;
@@ -103,6 +111,29 @@
         width: 22px;
         height: 22px;
       }
+    }
+
+    .btn-group {
+      margin: 30px 36px 30px 0;
+    }
+    .main-dashboard-container {
+      width: 100%;
+      position: relative;
+      border: 1px solid #DEE1E2;
+      padding: 0 10px;
+    }
+    .chart-container {
+      float: left;
+      position: relative;
+      padding-right: 10px;
+      width: 40%;
+      border-right: 1px solid #DEE1E2;
+    }
+    .recent-articles-container {
+      padding: 12px 12px 0px;
+      float: left;
+      width: 60%;
+      position: relative;
     }
   }
 
