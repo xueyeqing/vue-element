@@ -28,6 +28,51 @@ name 为属性名, rule 为规则, value 为值，属性名和生成规则之间
 ## ECharts
  > ECharts 提供了常规的折线图，柱状图，散点图，饼图，K线图，用于统计的盒形图，用于地理数据可视化的地图，热力图，线图，用于关系数据可视化的关系图，treemap，多维数据可视化的平行坐标，还有用于 BI 的漏斗图，仪表盘，并且支持图与图之间的混搭。
 
+ ![](http://www.iblogtek.com/wordpress/wp-content/uploads/2017/07/257.pic_.jpg)<br>
+  
+   重要常见配置项：
+     ``` 
+      .setOption({
+          title:{}, //标题
+          legend:{}, //图例组件
+          grid:{}, //直角坐标系内绘图网格
+          xAxis:{}, //直角坐标系 grid 中的 x 轴
+          yAxis:{}, //直角坐标系 grid 中的 y 轴
+          tooltip:{}, //提示框组件
+          series:[{}], //系列列表。每个系列通过 type 决定自己的图表类型
+      }}
+     ```
+   举例：
+   ```
+     // 图例组件展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示。
+     legend: {
+       icon: 'rect',
+       itemWidth: 14,
+       itemHeight: 5,
+       itemGap: 13, //图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
+       data: ['移动', '电信', '联通'],
+       right: '4%',
+       textStyle: {
+         fontSize: 12,
+         color: '#F1F1F3'
+       }
+     },
+     grid: {
+       left: '3%',
+       right: '4%',
+       bottom: '3%',
+       containLabel: true //grid 区域是否包含坐标轴的刻度标签。
+     },
+     tooltip: {
+       trigger: 'axis', //触发类型
+       axisPointer: { //坐标轴指示器配置项。
+         lineStyle: {
+           color: '#57617B'
+         }
+       }
+     },
+  
+   ```
 > A Vue.js project
 
 ## Build Setup

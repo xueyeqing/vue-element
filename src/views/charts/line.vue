@@ -1,11 +1,23 @@
 <template>
-  <div>则线图</div>
+  <div class="components-container" style='height:100vh'>
+    <div class="chart-container">
+      <lineMarker height='100%' width='100%'></lineMarker>
+    </div>
+  </div>
 </template>
 
 <script>
-  export default {};
+  import lineMarker from 'components/Charts/lineMarker';
+  export default{
+    components: {lineMarker}
+  }
 </script>
 
 <style scoped>
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 80%;
+  }
 </style>
 

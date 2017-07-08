@@ -54,7 +54,7 @@
       },
       setOptions() {
         this.chart.setOption({
-          title: {text: 'ECharts使用'},
+//          title: {text: 'ECharts使用'},
           tooltip: {
             show: true,
             formatter(params) {
