@@ -73,6 +73,50 @@ name 为属性名, rule 为规则, value 为值，属性名和生成规则之间
      },
   
    ```
+   
+## 自定义指令 
+  注册一个全局自定义指令:Vue.directive('xxx',{}})
+  > 钩子函数，详情参考官方文档：[Vue.js](https://cn.vuejs.org/v2/guide/custom-directive.html)
+
+## 插件的开发和使用
+  > 插件就是指对Vue的功能的增强或补充。
+  
+  > 使用方法:[1、声明插件]-[2、写插件]-[3、注册插件]-[4、使用插件]
+  
+  1、声明：example.js
+  ```
+    export default {
+      install:function(Vue,options){
+        //添加的内容写在这个函数里面 
+      }
+    }
+    // 其中install的第一个参数Vue表示的是Vue的实例(即Vue对象)，第二个参数表示的是一些设置选项。
+  ```
+  2、注册：main.js中
+  ```
+     import example from './example.js'
+     Vue.use(service)
+   ```
+  3、写插件使用插件（上面的install函数中）官方有四种写法分别如下：
+  ```
+   1.添加全局方法或属性
+   Vue.myGlobalMethod = function() {...}
+   
+   2.添加全局资源
+   Vue.directive('my-directive',{
+     bind(el,binding,vnode,oldVnode){...}
+   })
+   
+   3.注入组件
+   Vue.mixin({
+     created:function(){...}
+   })
+   
+   4.添加实例方法
+   Vue.prototype.$myMethod = function(options) {...}
+
+  ```
+
 > A Vue.js project
 
 ## Build Setup

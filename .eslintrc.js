@@ -224,7 +224,7 @@ module.exports = {
     // require or disallow padding within blocks
     'padded-blocks': ['error', 'never'],
 
-    // require quotes around object literal property names
+    // require quotes around object literal property names //对象字面量中的属性名是否强制双引号
     'quote-props': ['error', 'as-needed'],
 
     // enforce the consistent use of either backticks, double, or single quotes
@@ -241,10 +241,10 @@ module.exports = {
 
     'no-console': 'off',
 
-    // enforce consistent spacing before function definition opening parenthesis
-    'space-before-function-paren': ['error', 'never'],
+    // enforce consistent spacing before function definition opening parenthesis 函数定义时括号前面要不要有空格
+    'space-before-function-paren': ['off', 'never'],
 
-    // enforce consistent spacing inside parentheses
+    // enforce consistent spacing inside parentheses 小括号里面要不要有空格
     'space-in-parens': 'error',
 
     // require spacing around infix operators
@@ -291,14 +291,14 @@ module.exports = {
     // require let or const instead of var
     'no-var': 'error',
 
-    // require or disallow method and property shorthand syntax for object literals
+    // 强制对象字面量缩写语法
     'object-shorthand': 'error',
 
-    // require arrow functions as callbacks
+    // require arrow functions as callbacks 需要箭头函数作为回调
     'prefer-arrow-callback': 'error',
 
     // require const declarations for variables that are never reassigned after declared
-    'prefer-const': 'error',
+    'prefer-const': 'off',
 
     // disallow parseInt() in favor of binary, octal, and hexadecimal literals
     'prefer-numeric-literals': 'error',

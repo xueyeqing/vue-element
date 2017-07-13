@@ -57,6 +57,9 @@ const Tab = _import('example/tab/index');
 /* permission */
 const Permission = _import('permission/index');
 
+/* zyzhang 附加内容*/
+const zyzhang = _import('zyzhang/index');
+
 Vue.use(Router)
 
 export const constantRouterMap = [
@@ -190,5 +193,15 @@ export const asyncRouterMap = [
       {path: 'tab/index', component: Tab, name: 'Tab'}
     ]
   },
-  {path: '*', redirect: '/404', hidden: true}
+  {path: '*', redirect: '/404', hidden: true},
+  {
+    path: '/zyzhang',
+    component: Layout,
+    redirect: '/zyzhang/index',
+    name: '附加内容',
+    icon: 'zujian',
+    children: [
+      {path: 'index', component: zyzhang, name: '插件'}
+    ]
+  }
 ];
