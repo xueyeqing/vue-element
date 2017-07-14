@@ -52,11 +52,11 @@ service.install = (Vue, options) => {
   Vue.prototype.NOTICE = true;
   /* 注入组件 */
   Vue.mixin({
-    created: () => {
-      if (this.NOTICE) {
-        console.log('组件开始加载');
-      }
-    },
+    // created: function () {
+    //   if (this.NOTICE) {
+    //     console.log('组件开始加载');
+    //   }
+    // },
     methods: {
       test: () => {
         console.log('mixin test');

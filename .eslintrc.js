@@ -292,7 +292,7 @@ module.exports = {
     'no-var': 'error',
 
     // 强制对象字面量缩写语法
-    'object-shorthand': 'error',
+    'object-shorthand': 'warn',
 
     // require arrow functions as callbacks 需要箭头函数作为回调
     'prefer-arrow-callback': 'error',

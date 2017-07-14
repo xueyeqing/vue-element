@@ -13,8 +13,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
 
+import vueWaves from './directive/waves' // 水波纹指令
 import s from './utils/s'
 Vue.use(s)
+Vue.use(vueWaves)
 
 Vue.config.productionTip = false
 
