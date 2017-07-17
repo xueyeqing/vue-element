@@ -1,29 +1,22 @@
 /**
- * Created by a1 on 17/6/28.
+ * Created by a1 on 17/7/17.
  */
-
-/**
- * 如：https://www.baidu.com/home/news/data/newspage?nid=4330552084590160075&n_type=0&p_from=1
- * @param url
- * {https://www.baidu.com/home/news/data/newspage?nid: "4330552084590160075", n_type: "0", p_from: "1"}
- */
-export function param2Obj(url) { // 如 https://api-dev/user/info?token=editor
-  const search = url.split('?')[1];
-  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
-  //  返回：token=editor
-}
 
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null;
   }
+
+  if ((time + '').length === 10) {
+    time = +time * 1000
+  }
+
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
   let date;
   if (typeof time == 'object') {
     date = time;
   } else {
-    if (('' + time).length === 10) time = parseInt(time) * 1000;
-    date = new Date(time);
+    date = new Date(parseInt(time));
   }
   const formatObj = {
     y: date.getFullYear(),

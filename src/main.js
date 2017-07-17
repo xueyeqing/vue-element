@@ -8,6 +8,7 @@ import 'styles/index.scss' // 全局自定义的css样式
 import 'components/Icon-svg/index' // 封装的svg组件
 import 'assets/iconfont/iconfont' // iconfont 具体图标见https://github.com/PanJiaChen/vue-element-admin/wiki
 import './mock/index.js'  // 该项目所有请求使用mockjs模拟
+import * as filters from './filters'; // 全局vue filter
 import Cookies from 'js-cookie'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
@@ -19,6 +20,11 @@ Vue.use(s)
 Vue.use(vueWaves)
 
 Vue.config.productionTip = false
+
+// register global utility filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+});
 
 // permissiom judge
 function hasPermission(roles, permissionRoles) {
