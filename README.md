@@ -1,3 +1,5 @@
+> A Vue.js project
+
 [原文地址](https://github.com/PanJiaChen/vue-element-admin)
 
 > 技术栈主要的采用vue+element+axios由webpack2打包
@@ -19,6 +21,7 @@ name 为属性名, rule 为规则, value 为值，属性名和生成规则之间
    
    Mock.Random
     是一个工具类，用于生成各种随机数据。Mock.Random 的方法在数据模板中称为“占位符”，引用格式为 @占位符(参数 [, 参数]) 。
+    如：timestamp: +Mock.Random.date('T')
 ```
 
 ## vue.2.0新特性 addRoutes实现路由动态加载，菜单动态加载，运用于后台管理系统，路由数据取自数据库。
@@ -116,8 +119,100 @@ name 为属性名, rule 为规则, value 为值，属性名和生成规则之间
    Vue.prototype.$myMethod = function(options) {...}
 
   ```
+  > 实例：全局注册一个自定义指令，按钮点击后的水波纹效果（详细见代码中的waves.js）
+  
+  1、声明 waves.js
+  ``` 
+    const vueWaves = {};
+    
+    vueWaves.install = (Vue, options = {}) => {
+      Vue.directive('waves', {
+        // 只调用一次，指令第一次绑定到元素时调用 binding一个对象，包含很多属性
+        bind(el, binding) {
+          // 指定事件名 ， 事件触发时执行的函数
+          el.addEventListener('click', e => {
+             // 实现逻辑部分
+          },false);
+        }
+      });
+    }
+    
+    export default vueWaves;
+  ```
+  2、注册 main.js
+  ```
+    import vueWaves from './directive/waves' // 水波纹指令
+    Vue.use(vueWaves)
+  ```
+  
+  3、最后就是在需要的地方引用即可，如下
+  ```
+    <el-button v-waves type="primary">点击查看效果</el-button>
+  ```
 
-> A Vue.js project
+## 过滤器的使用 （大部分的过滤器是要全局使用的，不会每每用到就在组件里面去写）
+  > 简单实现 如下（注册在Vue全局）：
+   ```
+   html:
+        <p>{{ message | sum }}</p>
+        <input type="text" v-model="message | change"> 
+        <!--用户从input输入的数据在回传到model之前也可以先处理-->
+        
+   js:
+     // 全局注册方法
+     Vue.filter('sum', funcation(value) {
+       // 返回处理后的值
+       return value + 4;
+     }
+
+   ```
+   > （注册在实例化内部）
+   ```
+     export default {
+         data() {
+           return {
+             message:12
+           }
+         },
+         filters:{
+           sum:function(value){
+             return value + 4;
+           }
+         }
+     }
+
+   ```
+   
+   > 全局注册中，当项目所用到的过滤器比较多时，可以把所有的方法定义在一个文件里面导出，如下：
+   1、/src/filters/index.js
+   ```
+     export function aaa(value) {
+        return value.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3')
+     }
+     
+     export function bbb(){}
+     
+   ```
+   2、在main.js中我们这么引入即可
+   ```
+      import * as filters from './filters'; // 全局vue filter
+      Object.keys(filters).forEach(key => {
+         Vue.filter(key, filters[key])
+      });
+   ```
+   3、在其他的.vue 文件中就可愉快地使用这些我们定义好的全局过滤器,其中time是我们需要显示的数据
+   ```
+    <p>{{ time | aaa }}</p>  // 需要显示格式为'2016-01-01'
+    
+    export default {
+        data () {
+          return {
+            time: 20160101
+          }
+        }
+    }
+    
+   ```
 
 ## Build Setup
 
