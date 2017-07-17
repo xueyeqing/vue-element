@@ -1,7 +1,7 @@
 /**
  * Created by a1 on 17/6/26.
  */
-import {loginByEmail, getInfo} from 'api/login';
+import {loginByEmail, logout, getInfo} from 'api/login';
 import Cookies from 'js-cookie'
 
 const user = {
@@ -65,6 +65,19 @@ const user = {
         }).catch(error => {
           reject(error);
         })
+      });
+    },
+    // Logout
+    LogOut({commit, state}) {
+      return new Promise((resolve, reject) => {
+        logout(state.token).then(() => {
+          commit('SET_TOKEN', '');
+          commit('SET_ROLES', []);
+          Cookies.remove('Admin-Token');
+          resolve();
+        }).catch(error => {
+          reject(error)
+        });
       });
     }
   }

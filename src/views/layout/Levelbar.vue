@@ -39,6 +39,7 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   .app-levelbar {
+    display: inline-block;
     line-height: 50px;
     margin-left: 10px;
     font-size: 14px;

@@ -58,5 +58,6 @@ export default {
     } else {
       Promise.reject('a');
     }
-  }
+  },
+  logout: () => 'success'
 }

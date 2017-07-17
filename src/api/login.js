@@ -22,3 +22,10 @@ export function getInfo(token) {
     params: {token}
   })
 }
+
+export function logout() {
+  return fetch({
+    url: '/login/logout',
+    method: 'post'
+  })
+}
